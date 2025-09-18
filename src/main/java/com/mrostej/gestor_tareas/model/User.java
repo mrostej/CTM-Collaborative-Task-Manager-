@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
+import java.util.List;
 
 // The user of the APP, with his different tasks, friends and more.
 
@@ -15,6 +17,8 @@ import java.sql.Date;
 @Getter
 @Setter
 public class User {
+
+    // --- VARIABLES ---
 
     @Id
     @Column(updatable = false)
@@ -28,21 +32,34 @@ public class User {
     private String email;
 
     @Column(nullable = true, unique = true, length = 15)
-    private Number phone;
+    private String phone;
 
     @Column(nullable = false, unique = true, length = 6)
     private String userCode;
 
     @Column(nullable = false)
-    private Date CreationDate;
+    private LocalDateTime createdAt;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 255)
     private String password;
 
-    // Add img for the users
+    // TODO
+    // img of the user
 
-    // Add the tasks list
+    // TODO
+    // fast task list
 
-    // Add the friends list
+    // TODO
+    // friends list
+
+    // --- RELATIONS ---
+
+    // Boards where the user is the owner
+    @OneToMany(mappedBy = "owner")
+    private List<Board> ownedBoards;
+
+    // Boards where the user is a member
+    @ManyToMany(mappedBy = "members")
+    private List<Board> memberBoards;
 
 }

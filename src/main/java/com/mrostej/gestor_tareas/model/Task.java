@@ -3,6 +3,9 @@ package com.mrostej.gestor_tareas.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDateTime;
+import java.util.List;
+
 // The task the user create and modify
 
 @Entity
@@ -13,6 +16,8 @@ import lombok.*;
 @Getter
 @Setter
 public class Task {
+
+    // --- VARIABLES ---
 
     @Id
     @Column(updatable = false)
@@ -25,15 +30,32 @@ public class Task {
     @Column(nullable = false)
     private String description;
 
+    // TODO
+    // objetives list
 
-    // List of objetives
+    // TODO
+    // progress bar automatically filled by objetives
 
-    // progress bar automatically filled
+    @Column(nullable = false)
+    private LocalDateTime startDate;
 
-    // List of users involved
+    @Column(nullable = false)
+    private LocalDateTime endDate;
 
-    // Initial Date
+    // --- RELATIONS ---
 
-    // Final Date
+    // Board the task are assigned to
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "board_id", nullable = false)
+    private Board board;
+
+    // Labels assigned to the task
+    @ManyToMany
+    @JoinTable(
+            name = "task_labels",
+            joinColumns = @JoinColumn(name = "task_id"),
+            inverseJoinColumns = @JoinColumn(name = "label_id")
+    )
+    private List<Label> labels;
 
 }
