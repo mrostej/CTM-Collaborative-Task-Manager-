@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -32,6 +33,9 @@ public class Board {
     @Column(nullable = false)
     private LocalDateTime createdAt;
 
+    // TODO
+    // progress bar automatically filled by completed tasks
+
     // --- RELATIONS ---
 
     // Owner of the board
@@ -44,8 +48,12 @@ public class Board {
     @JoinTable(name = "board_users", joinColumns = @JoinColumn(name = "board_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
     private List<User> members;
 
-    // Tasks of the board
+    // Board's tasks
     @OneToMany(mappedBy = "board", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Task> tasks;
+    private List<Task> tasks = new ArrayList<>();
+
+    // Board's labels
+    @OneToMany(mappedBy = "board", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Label> labels = new ArrayList<>();
 
 }

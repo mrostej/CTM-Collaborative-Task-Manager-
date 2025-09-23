@@ -3,7 +3,6 @@ package com.mrostej.gestor_tareas.model;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.sql.Date;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -25,8 +24,11 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, length = 75)
+    @Column(nullable = false)
     private String name;
+
+    @Column(nullable = false, length = 75)
+    private String username;
 
     @Column(nullable = false, unique = true)
     private String email;
@@ -43,8 +45,9 @@ public class User {
     @Column(nullable = false, length = 255)
     private String password;
 
-    // TODO
-    // img of the user
+    @Lob
+    @Column(name = "profile_image", columnDefinition = "LONGBLOB")
+    private byte[] profileImage;
 
     // TODO
     // fast task list

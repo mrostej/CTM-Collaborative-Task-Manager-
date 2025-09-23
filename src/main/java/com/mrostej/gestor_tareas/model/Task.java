@@ -30,12 +30,6 @@ public class Task {
     @Column(nullable = false)
     private String description;
 
-    // TODO
-    // objetives list
-
-    // TODO
-    // progress bar automatically filled by objetives
-
     @Column(nullable = false)
     private LocalDateTime startDate;
 
@@ -44,12 +38,12 @@ public class Task {
 
     // --- RELATIONS ---
 
-    // Board the task are assigned to
+    // task's board
     @ManyToOne(optional = false)
     @JoinColumn(name = "board_id", nullable = false)
     private Board board;
 
-    // Labels assigned to the task
+    // task's labels
     @ManyToMany
     @JoinTable(
             name = "task_labels",

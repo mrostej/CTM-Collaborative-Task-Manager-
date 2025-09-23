@@ -29,8 +29,13 @@ public class Label {
 
     // --- RELATIONS ---
 
-    // Tasks assigned to the label
+    // label's tasks
     @ManyToMany(mappedBy = "labels")
     private List<Task> tasks;
+
+    // label's boards
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "board_id", nullable = false)
+    private Board board;
 
 }
