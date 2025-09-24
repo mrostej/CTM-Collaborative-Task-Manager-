@@ -31,6 +31,9 @@ public class Task {
     private String description;
 
     @Column(nullable = false)
+    private Boolean completed;
+
+    @Column(nullable = false)
     private LocalDateTime startDate;
 
     @Column(nullable = false)

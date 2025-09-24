@@ -36,6 +36,7 @@ public class User {
     @Column(nullable = true, unique = true, length = 15)
     private String phone;
 
+    // 6-digit code to identify the user
     @Column(nullable = false, unique = true, length = 6)
     private String userCode;
 
@@ -49,10 +50,10 @@ public class User {
     @Column(name = "profile_image", columnDefinition = "LONGBLOB")
     private byte[] profileImage;
 
-    // TODO
+    // TODO in 1.1
     // fast task list
 
-    // TODO
+    // TODO in 1.1
     // friends list
 
     // --- RELATIONS ---

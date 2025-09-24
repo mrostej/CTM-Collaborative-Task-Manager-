@@ -33,7 +33,7 @@ public class Board {
     @Column(nullable = false)
     private LocalDateTime createdAt;
 
-    // TODO
+    // TODO in 1.1
     // progress bar automatically filled by completed tasks
 
     // --- RELATIONS ---
